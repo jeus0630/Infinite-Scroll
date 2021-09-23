@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+// ---------------------------------- Site variables ---------------------------------- //
+
+$psd-wide-width : 1920px;
+$psd-desktop-width : 1280px;
+$psd-tablet-width : 768px;
+$psd-mobile-width : 375px;
+
+$max-content-width:1920px;
+$min-content-width:766px;
+
+$max-desktop-width:1280px;
+$max-tablet-width:1024px;
+$max-mobile-width:767px;
+
+$mobile-column-padding : 5px;
+$desktop-column-padding : 8px;
+
+$break-mobile-max: $min-content-width;
+$break-tablet-min: $min-content-width + 1;
+$break-site-min: 1280px;
+
+// only for gnb
+$break-tablet-max: $max-tablet-width + 1;
+
+// gnb 높이 변수
+$header-height : 75px;
+
+// fonts
+
+// - font default
+$font_default : 'Malgun Gothic', 'Microsoft NeoGothic', Dotum, 돋움, 굴림, arial, sans-serif;
+
+// - font sets
+$font-ko-regular : 'SpaceGrotesk light', sans-serif;
+$font-ko-bold :  'SpaceGrotesk bold', sans-serif;
+// $font-en-light: 'SpaceGrotesk light', sans-serif;
+// $font-en-regular: 'SpaceGrotesk regular', sans-serif;
+

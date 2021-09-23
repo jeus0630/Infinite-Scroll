@@ -1,0 +1,123 @@
+@charset "utf-8";
+@use "sass:math"; 
+
+// 단위 제거 함수
+@function delUnit($value) {
+    @return math.div($value , ($value * 0 + 1))
+}
+
+// vw Calculator (mobile)
+/*@function calc-vw-small($px){
+    @return ((delUnit($px) / delUnit($psd-mobile-width)) * 100) + vw;
+}*/
+
+
+@function px-to-other-unit-calculator($unit-px, $width, $unit){
+    $tmpx: null;
+    @if($unit-px == 0){
+        $tmpx: $unit-px;
+    }@else if($unit-px == auto){
+        $tmpx: auto;
+    }@else {
+        $tmpx: (math.div(delUnit($unit-px),(delUnit($width))) * 100) + $unit;
+    }
+
+    @return $tmpx;
+}
+
+// vw Calculator (mobile)
+@function calc-vw-small($value-px) {
+    //$value-px : delUnit($value-px);
+
+    // 단위 변환
+    @if $value-px != null {
+        $changed-unit: null !default;
+        $viewport-width: null !default;
+        $use-unit-type: null !default;
+
+        //  PSD 가로폭 정의, 사용 단위 선택
+        @if (length($value-px) == 1) { // 기본값 vw
+            $use-unit-type: vw;
+            $viewport-width: $psd-mobile-width;
+            // 단위 변환
+            $changed-unit : px-to-other-unit-calculator($value-px, $psd-mobile-width, $use-unit-type);
+
+        } @else if (length($value-px) > 1) {
+            $tmp-px: nth($value-px, 1);
+            $tmp-parm: nth($value-px, 2);
+
+            @if( type-of($tmp-parm) == string and $tmp-parm != auto){
+                // single 단위 변환
+                $use-unit-type: $tmp-parm;
+                $viewport-width: $psd-mobile-width;
+                $changed-unit : px-to-other-unit-calculator($tmp-px, $viewport-width, $use-unit-type);
+
+            }@else if( type-of($tmp-parm) == number or ((length($value-px) >1) and $tmp-parm == auto)){
+                // multiple 단위 변환
+                $use-unit-type: vw;
+                $viewport-width: $psd-mobile-width;
+
+                @each $i in $value-px {
+                    $changed-unit : append($changed-unit, px-to-other-unit-calculator($i, $viewport-width, $use-unit-type ));
+                }
+            }
+        }
+
+        @return $changed-unit;
+
+    } @else {
+
+        @return  null;
+
+    }
+
+}
+
+
+// vw Calculator (tablet~)
+@function calc-vw($value-px, $psd-width) {
+    $psd-width : delUnit($psd-width);
+
+    // 단위 변환
+    @if $value-px != null {
+        $changed-unit: null !default;
+        $viewport-width: null !default;
+        $use-unit-type: null !default;
+
+        //  PSD 가로폭 정의, 사용 단위 선택
+        @if (length($value-px) == 1) { // 기본값 vw
+            $use-unit-type: vw;
+            $viewport-width: $psd-width;
+            // 단위 변환
+            $changed-unit : px-to-other-unit-calculator($value-px, $psd-width, $use-unit-type);
+
+        } @else if (length($value-px) > 1) {
+            $tmp-px: nth($value-px, 1);
+            $tmp-parm: nth($value-px, 2);
+
+            @if( type-of($tmp-parm) == string and $tmp-parm != auto){
+                // single 단위 변환
+                $use-unit-type: $tmp-parm;
+                $viewport-width: $psd-width;
+                $changed-unit : px-to-other-unit-calculator($tmp-px, $viewport-width, $use-unit-type);
+
+            }@else if( type-of($tmp-parm) == number or ((length($value-px) >1) and $tmp-parm == auto)){
+                // multiple 단위 변환
+                $use-unit-type: vw;
+                $viewport-width: $psd-width;
+
+                @each $i in $value-px {
+                    $changed-unit : append($changed-unit, px-to-other-unit-calculator($i, $viewport-width, $use-unit-type ));
+                }
+            }
+        }
+
+        @return $changed-unit;
+
+    } @else {
+
+        @return  null;
+
+    }
+
+}

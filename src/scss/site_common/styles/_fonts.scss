@@ -1,0 +1,71 @@
+@charset "utf-8";
+@use "sass:math"; 
+
+/* webfont */
+@import 'fonts/notosanskr.scss';
+@import 'fonts/SpaceGrotesk.scss';
+
+/* 웹 폰트 자간, 행간 디테일 세팅  */
+//body {font-family:'NeoB', NeoB, $font_default;}
+body,input,textarea,select,button, td {text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-moz-font-feature-settings:"liga", "kern"}
+
+// fontStyle
+
+.font-bold {
+    font-family: 'SpaceGrotesk bold';
+    font-weight: 700;
+}
+.font-light {
+    font-family: 'SpaceGrotesk light';
+    font-weight: 300;
+}
+
+
+////////////////////// en ///////////////////////
+.font-en-size-100 {
+    @extend .font-bold;
+    @include calc-font-set(
+                    100px, 1.2,
+                    42px, 1.2
+    )
+}
+
+.font-en-size-25 {
+    @extend .font-bold;
+    @include calc-font-set(
+                    25px, 1.2,
+                    18px, 1.3
+    )
+}
+
+.font-en-size-50 {
+    @extend .font-light;
+    @include calc-font-set(
+                    50px, 1.2,
+                    30px, 1.2
+    )
+}
+
+.font-en-size-25-l {
+    @extend .font-light;
+    @include calc-font-set(
+                    25px, 1.2,
+                    15px, 1.2
+    )
+}
+
+.font-en-size-20 {
+    @extend .font-light;
+    @include calc-font-set(
+                    20px, 1.4,
+                    15px, 1.35
+    )
+}
+
+.font-en-size-20-b {
+    @extend .font-bold;
+    @include calc-font-set(
+                    20px, 1.2,
+                    20px, 1.2
+    )
+}

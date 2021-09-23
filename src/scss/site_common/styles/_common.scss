@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+// ---------------------------------- Site common-comp classes ---------------------------------- //
+
+html{
+    background-color: white;
+}
+
+@import "../layout/header";
+@import "../layout/columns";
+@import "../layout/menu";
+@import "../layout/footer";
+
+.hidden {visibility: hidden};
+.none {display: none};
+
+.viewport {
+    width: 100%;
+    top: 0; left: 0;
+}
+
+.hash-anchor {
+    font-size:0;
+    width: 0; height:0;
+    visibility:hidden;
+}
+
+section {
+    position: relative;
+    width: 100%; height: auto;
+    font-size:0;
+    img { width: 100%; }
+}
+
+hr {
+    width: 100%;
+    margin:0;
+    border-color: #707070;
+}
+
+.no_select {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.white { color: #fff; border-color: #fff !important; hr{border-color:#fff !important;} .txt{color:#fff;}}
+.black { color: #000; border-color: #000 !important; hr{border-color:#000 !important;} .txt{color:#000;}}

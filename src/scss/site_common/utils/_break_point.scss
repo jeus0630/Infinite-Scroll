@@ -1,0 +1,116 @@
+@mixin mx-break-point-small(){
+    @at-root html:not(.desktop) &{
+        @media screen and (max-width: $break-site-min) {
+            @content;
+        }
+    }
+}
+
+@mixin calc-font-set (
+    $desktopSize, $desktopLineHeight,
+    $mobileSize, $mobileLineHeight,
+) {
+    font-size: calc-vw-mobile($mobileSize);
+    line-height: $mobileLineHeight;
+
+    @include break-point-between($max-mobile-width, $max-content-width) {
+        font-size: calc-vw-desktop($desktopSize);
+        line-height: $desktopLineHeight;
+    }
+
+    @include break-point-min($max-content-width) {
+        font-size: $desktopSize;
+        line-height: $desktopLineHeight;
+    }
+}
+
+@mixin calc-prop-set (
+    $property,
+    $desktop, $mobile
+) {
+
+    $mobileVW: $mobile;
+    @if is-percentage($mobileVW)==false {
+        @if is-relative-length($mobileVW)==false {
+            $mobileVW: calc-vw-mobile($mobile);
+        }
+    }
+    $desktopVW: $desktop;
+    @if is-percentage($desktopVW)==false {
+        @if is-relative-length($desktopVW)==false {
+            $desktopVW: calc-vw-desktop($desktop);
+        }
+    }
+
+    #{$property}: $mobileVW;
+    @include break-point-between($max-mobile-width, $max-content-width) {
+        #{$property}: $desktopVW;
+    }
+    @include break-point-min($max-content-width) {
+        #{$property}: $desktop;
+    }
+}
+
+@mixin calc-prop-ptm-set (
+    $property,
+    $desktop, $mobile
+) {
+
+    $mobileVW: $mobile;
+    @if is-percentage($mobileVW)==false {
+        @if is-relative-length($mobileVW)==false {
+            $mobileVW: calc-vw-mobile($mobile);
+        }
+    }
+    $tabletVW: $mobile;
+    @if is-percentage($tabletVW)==false {
+        @if is-relative-length($tabletVW)==false {
+            $tabletVW: calc-vw-tablet($mobile);
+        }
+    }
+    $desktopVW: $desktop;
+    @if is-percentage($desktopVW)==false {
+        @if is-relative-length($desktopVW)==false {
+            $desktopVW: calc-vw-desktop($desktop);
+        }
+    }
+
+    #{$property}: $mobileVW;
+    @include break-point-between($max-mobile-width, $break-tablet-max) {
+        #{$property}: $tabletVW;
+    }
+    @include break-point-between($break-tablet-max, $max-content-width) {
+        #{$property}: $desktopVW;
+    }
+    @include break-point-min($max-content-width) {
+        #{$property}: $desktop;
+    }
+}
+
+@function calc-vw-desktop($value-px) {
+    @return calc-vw($value-px, $max-content-width);
+}
+
+@function calc-vw-tablet($value-px) {
+    @return calc-vw($value-px, $max-tablet-width);
+}
+
+@function calc-vw-mobile($value-px) {
+    @return calc-vw($value-px, $psd-mobile-width);
+}
+
+@include break-point-max($break-mobile-max) {
+    br._pc,
+    .type-pc{
+        display: none !important;
+    }
+}
+
+@include break-point-min($break-tablet-min) {
+    br._m,
+    .type-mobile{
+        display: none !important;
+    }
+}
+
+
