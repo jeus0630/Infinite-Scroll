@@ -1,6 +1,8 @@
 
 export default class {
     static addScrollMotion(el){
+        //git test
+
         const config = {
             root : null,
             rootMargin : '0px 0px 0px 0px',
