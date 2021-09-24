@@ -3,9 +3,9 @@
 ---
 
 ### Learning Goals
-✔ Get used to use Intersection Observer API <br>
-✔ Get used to use Async/Await with Promise <br>
-✔ Gain ability to predict various problems that will be entered when implementing the infinite scroll challenge in real environment
+#### ✔ Get used to use Intersection Observer API <br>
+#### ✔ Get used to use Async/Await with Promise <br>
+#### ✔ Gain ability to predict various problems that will be entered when implementing the infinite scroll challenge in real environment <br>
 ---
 
 **Development mode**
