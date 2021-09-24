@@ -1,6 +1,6 @@
 
 export default class {
-
+    // wewf
     static addScrollMotion(el){
         const config = {
             root : null,
