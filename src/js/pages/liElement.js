@@ -21,7 +21,7 @@ export default class{
 
         this._liLazy = `<li class="item">
                             <div class="img-wrap motion">
-                                <img data-src="${hdurl}" alt="Space picture">
+                                <img data-src="${hdurl}" alt="Space picture" class="img">
                             </div>
                             <div class="txt">
                                 <em class="tit motion">${title}</em>

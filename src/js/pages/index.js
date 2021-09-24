@@ -41,7 +41,7 @@ export default class Index extends page{
         const motions = document.querySelectorAll('.motion');
         intersectonObserver.addScrollMotion(motions);
 
-        const images = document.querySelectorAll('img');
+        const images = document.querySelectorAll('.img-wrap');
         intersectonObserver.triggerLazyLoading(images);
     }
 

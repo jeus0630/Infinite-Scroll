@@ -4,7 +4,7 @@ export default class {
     static addScrollMotion(el){
         const config = {
             root : null,
-            rootMargin : '0px',
+            rootMargin : '0px 0px 0px 0px',
             threshold : 0
         }
 
@@ -14,8 +14,6 @@ export default class {
 
                 if(isIntersecting){
                     target.classList.add('onTrans');
-
-                    observer.unobserve(target);
                 }
 
             })
@@ -36,11 +34,10 @@ export default class {
 
         const observer = new IntersectionObserver(entries=>{
             entries.forEach(entry=>{
-                console.log(entry);
-                const {isVisible, target} = entry;
+                const {isIntersecting, target} = entry;
 
-                if(isVisible){
-                    target.src = target.dataset.src || target.src;
+                if(isIntersecting){
+                    target.childNodes[1].src = target.childNodes[1].dataset.src || target.childNodes[1].src;
                     observer.unobserve(target);
                 }
 
