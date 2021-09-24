@@ -27,25 +27,29 @@ export default class {
 
     }
 
-    static observe(el){
+    static triggerLazyLoading(el){
         const config = {
             root : null,
-            rootMargin : '0px',
+            rootMargin : '0px 0px 50% 0px',
             threshold : 0,
         };
 
         const observer = new IntersectionObserver(entries=>{
             entries.forEach(entry=>{
-                const {isIntersecting, target} = entry;
+                console.log(entry);
+                const {isVisible, target} = entry;
 
-                if(isIntersecting){
-                        target.src = target.dataset.src;
+                if(isVisible){
+                    target.src = target.dataset.src || target.src;
+                    observer.unobserve(target);
                 }
 
             })
         },config)
 
-        observer.observe(el);
+        el.forEach(el=>{
+            observer.observe(el);
+        })
     }
 
 }

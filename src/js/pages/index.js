@@ -38,9 +38,11 @@ export default class Index extends page{
     }
 
     addScrollEvent(){
-        const images = document.querySelectorAll('.motion');
+        const motions = document.querySelectorAll('.motion');
+        intersectonObserver.addScrollMotion(motions);
 
-        intersectonObserver.addScrollMotion(images);
+        const images = document.querySelectorAll('img');
+        intersectonObserver.triggerLazyLoading(images);
     }
 
 }
