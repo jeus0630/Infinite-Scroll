@@ -2,8 +2,8 @@
 /.idea/
 /node_modules/
 
-#/dist/assets/
-#/dist/*.html
+/dist/assets/
+/dist/*.html
 
 #*.css
 
