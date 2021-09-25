@@ -29,7 +29,7 @@ export default class {
     static triggerLazyLoading(el){
         const config = {
             root : null,
-            rootMargin : '0px 0px 50% 0px',
+            rootMargin : '0px 0px 200% 0px',
             threshold : 0,
         };
 
