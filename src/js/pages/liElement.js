@@ -1,7 +1,7 @@
 
 export default class{
 
-    constructor({hdurl,title,date,explanation}) {
+    constructor({hdurl,title,date,explanation},i=0) {
 
         this._li = `<li class="item">
                             <div class="img-wrap motion">
@@ -44,5 +44,6 @@ export default class{
     get liLazy(){
         return this._liLazy;
     }
+
 
 }

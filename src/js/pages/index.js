@@ -1,22 +1,27 @@
-import fetchData from "./fetchData";
+import axios from "axios";
 import liElement from "./liElement";
+import intersectionObserver from "../lib/scroll/intersectionObserver";
 import page from "../common/page";
-import intersectonObserver from "../lib/scroll/intersectonObserver";
+
 
 export default class Index extends page{
 
-    _api_key = 'api_key=z6L3XolMeCUOQ6LqTGqgWyyGF4YtA4Qxsdsmnda2';
-    _count = 10;
-
     async getData(){
-        const addr = `https://api.nasa.gov/planetary/apod?${this._api_key}&count=${this._count}`
-        this._fetchData = await new fetchData(addr).fetchData();
+        const api_key = 'api_key=z6L3XolMeCUOQ6LqTGqgWyyGF4YtA4Qxsdsmnda2';
+        const count = 10;
+        const addr = `https://api.nasa.gov/planetary/apod?${api_key}&count=${count}`
 
-        this.appendElements();
+        try{
+            const fetchData = await axios.get(addr).then(el=>el.data);
+            this.appendElements(fetchData);
+        }catch(error){
+            console.error(error);
+        }
+
     }
 
-    appendElements(){
-        const el = this._fetchData.map((el,idx)=>{
+    appendElements(fetchData){
+        const el = fetchData.map((el,idx,arr)=>{
             if(idx<4) return new liElement(el).li;
             else return new liElement(el).liLazy;
         }).join('');
@@ -29,10 +34,13 @@ export default class Index extends page{
 
     addScrollEvent(){
         const motions = document.querySelectorAll('.motion');
-        intersectonObserver.addScrollMotion(motions);
+        intersectionObserver.addScrollMotion(motions);
 
         const images = document.querySelectorAll('.img-wrap');
-        intersectonObserver.triggerLazyLoading(images);
+        intersectionObserver.triggerLazyLoading(images);
+
+        const fetchTrigger = document.querySelector('.fetch-trigger');
+        intersectionObserver.fetchTrigger(fetchTrigger);
     }
 
 }

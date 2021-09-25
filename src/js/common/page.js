@@ -1,5 +1,4 @@
 import {isMobile} from "./globalVars";
-import ScrollControl from "../lib/scroll/scrollControl";
 export default class page {
 
     isMobile = isMobile(innerWidth);
@@ -9,8 +8,6 @@ export default class page {
     }
 
     init() {
-        this.scrollControl = new ScrollControl();
-
         if(this.isMobile) document.querySelector('#main').classList.add('mobile');
 
         this.addResizeEvent();
